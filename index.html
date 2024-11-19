@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestorIntel - AI-Powered Company Research</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold">InvestorIntel</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#how-it-works" class="hover:text-gray-300">How It Works</a>
+                    <a href="#pricing" class="hover:text-gray-300">Pricing</a>
+                    <a href="#contact" class="hover:text-gray-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">
+                    AI-Powered Company Research Assistant
+                </h1>
+                <p class="text-xl mb-8">
+                    Get instant answers to your questions about any public company using AI analysis of SEC filings, earnings calls, and more.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Search Interface -->
+    <div class="max-w-4xl mx-auto -mt-10 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-lg shadow-xl p-6">
+            <div class="search-container">
+                <form class="space-y-6" id="qaForm">
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-gray-700">
+                            Company Name or Ticker Symbol
+                        </label>
+                        <input type="text" id="company" required 
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                               placeholder="e.g., AAPL or Apple Inc.">
+                    </div>
+                    
+                    <div>
+                        <label for="question" class="block text-sm font-medium text-gray-700">
+                            Your Question
+                        </label>
+                        <textarea id="question" required rows="3" 
+                                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                  placeholder="What would you like to know about this company?"></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submitButton"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Get Answer
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div class="hidden mt-6 text-center" id="loadingSpinner">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent"></div>
+            </div>
+            
+            <!-- Answer Container -->
+            <div class="hidden mt-6" id="answerContainer">
+                <h3 class="text-lg font-medium text-gray-900">Answer</h3>
+                <div class="mt-2 prose prose-blue text-gray-700" id="answerText"></div>
+                <div class="mt-4 border-t pt-4">
+                    <h4 class="text-sm font-medium text-gray-900">Sources:</h4>
+                    <ul class="mt-2 text-sm text-gray-600" id="sourcesList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div id="how-it-works" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="text-2xl font-bold text-indigo-600 mb-4">1</div>
+                        <h3 class="text-xl font-semibold mb-2">Enter Company</h3>
+                        <p class="text-gray-600">Type in any public company name or ticker symbol</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="text-2xl font-bold text-indigo-600 mb-4">2</div>
+                        <h3 class="text-xl font-semibold mb-2">Ask Question</h3>
+                        <p class="text-gray-600">Ask any question about the company's business or financials</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="text-2xl font-bold text-indigo-600 mb-4">3</div>
+                        <h3 class="text-xl font-semibold mb-2">Get Answer</h3>
+                        <p class="text-gray-600">Receive AI-powered insights from official company documents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div id="pricing" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Pricing Plans</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-xl font-bold mb-4">Free</h3>
+                    <p class="text-3xl font-bold mb-4">$0</p>
+                    <ul class="space-y-2 mb-6">
+                        <li>5 queries per day</li>
+                        <li>Basic company information</li>
+                        <li>Public filings access</li>
+                    </ul>
+                    <button class="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-700">
+                        Get Started
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200 transform scale-105">
+                    <h3 class="text-xl font-bold mb-4">Pro</h3>
+                    <p class="text-3xl font-bold mb-4">$29/mo</p>
+                    <ul class="space-y-2 mb-6">
+                        <li>Unlimited queries</li>
+                        <li>Advanced analytics</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <button class="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-700">
+                        Start Free Trial
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-xl font-bold mb-4">Enterprise</h3>
+                    <p class="text-3xl font-bold mb-4">Custom</p>
+                    <ul class="space-y-2 mb-6">
+                        <li>Custom integration</li>
+                        <li>Dedicated support</li>
+                        <li>Custom features</li>
+                    </ul>
+                    <button class="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-700">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
+            <div class="max-w-xl mx-auto">
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-700">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">InvestorIntel</h3>
+                    <p class="text-gray-300">AI-powered company research made simple</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#how-it-works" class="text-gray-300 hover:text-white">How It Works</a></li>
+                        <li><a href="#pricing" class="text-gray-300 hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-300">Email: info@investorintel.com</li>
+                        <li class="text-gray-300">Phone: (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-300">
+                <p>&copy; 2024 InvestorIntel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_ENDPOINT = 'YOUR_API_ENDPOINT_HERE';
+        
+        document.getElementById('qaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const company = document.getElementById('company').value;
+            const question = document.getElementById('question').value;
+            const submitButton = document.getElementById('submitButton');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const answerContainer = document.getElementById('answerContainer');
+            
+            submitButton.disabled = true;
+            loadingSpinner.classList.remove('hidden');
+            answerContainer.classList.add('hidden');
+            
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: question,
+                        company_ticker: company
+                    })
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('answerText').textContent = data.response;
+                
+                const sourcesList = document.getElementById('sourcesList');
+                sourcesList.innerHTML = '';
+                data.sources.forEach(source => {
+                    const li = document.createElement('li');
+                    li.textContent = source;
+                    sourcesList.appendChild(li);
+                });
+                
+                answerContainer.classList.remove('hidden');
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('answerText').textContent = 'Sorry, there was an error processing your request. Please try again.';
+                answerContainer.classList.remove('hidden');
+            } finally {
+                submitButton.disabled = false;
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
